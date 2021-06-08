@@ -1,0 +1,94 @@
+<div class="container">
+  <main class="main">
+    <div class="row">
+      <div class="col-md-12 col-lg-12">
+        <h4 class="mb-3">Customer Information</h4>
+        <form [formGroup]="customerInfo" class="needs-validation">
+          <div class="row g-3">
+            <div class="col-sm-6">
+              <label for="firstName" class="form-label">First name</label>
+              <input type="text" formControlName="firstName" class="form-control" id="firstName" placeholder="First name" value="" required>
+            </div>
+
+            <div class="col-sm-6">
+              <label for="lastName" class="form-label">Last name</label>
+              <input type="text" formControlName="lastName" class="form-control" id="lastName" placeholder="Last name" value="" required>
+            </div>
+
+            <div class="col-6">
+              <label for="username" class="form-label">Username</label>
+              <div class="input-group">
+                <input type="text" class="form-control" id="username" placeholder="Username" required>
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <label for="email" class="form-label">Email Address</label>
+              <input type="email" class="form-control" id="email" placeholder="Email address" value="" required>
+            </div>
+
+          </div>
+
+
+          <div class="card mt-2r">
+            <div class="card-header ">
+              <div class="header-container">
+                <span class="product-header">
+                  Add Product Information
+                </span>
+                <svg (click)="addProduct()" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                  class="bi bi-plus-square-fill" viewBox="0 0 16 16">
+                  <path
+                    d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z" />
+                </svg>
+              </div>
+
+
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-12">
+
+                  <ul class="list-group">
+                    <li class="list-group-item" formArrayName="products" *ngFor="let product of customerInfo.get('products')['controls']; let i = index;">
+                      <div [formGroupName]="i" class="row">
+                        <div class="col-4">
+                          <input type="text" formControlName="name" class="form-control" id="firstName" placeholder="Product name" value=""
+                            required>
+                          <span *ngIf="product.get('name').errors && product.get('name').hasError('required')" class="validation">* required</span>
+                        </div>
+                        <div class="col-6">
+                          <input type="text" formControlName="description" class="form-control" id="firstName" placeholder="Product description"
+                            value="" required>
+                          <span *ngIf="product.get('description').errors && product.get('description').hasError('required')" class="validation">* required</span>
+
+                        </div>
+                        <div class="col-2">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-trash-fill" viewBox="0 0 16 16">
+                            <path
+                              d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
+                          </svg>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button (click)="createCustomerInfo()" class="mt-20 w-100 btn btn-primary btn-lg" type="button">Create Customer</button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer class="my-5 pt-5 text-muted text-center text-small">
+    <p class="mb-1">&copy; 2017–2021 Company Name</p>
+    <ul class="list-inline">
+      <li class="list-inline-item"><a href="#">Privacy</a></li>
+      <li class="list-inline-item"><a href="#">Terms</a></li>
+      <li class="list-inline-item"><a href="#">Support</a></li>
+    </ul>
+  </footer>
+</div>
